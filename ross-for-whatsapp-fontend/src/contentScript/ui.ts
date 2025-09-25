@@ -25,13 +25,16 @@ export function createTopTabs(renderSidebarContent: (key: string) => void, openS
 			renderSidebarContent(tab.key);
 			openSidebar();
 		});
+		
 		container.appendChild(button);
 	});
 	const appElement: HTMLElement | null = document.getElementById('app');
-	if (!appElement) {
-	 document.documentElement.appendChild(container);
-	}else{
+	if (appElement != null) {
+		// 在第一个元素之前插入
 		appElement.insertBefore(container, appElement.firstChild);
+	 
+	}else{
+		document.documentElement.appendChild(container);
 	}
 	return container;
 }

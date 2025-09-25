@@ -23,6 +23,9 @@
     "zip": "npm run build && node src/zip.js"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.1.13",
+    "qrcode-terminal": "^0.12.0",
+    "tailwindcss": "^4.1.13",
     "vue": "^3.3.4"
   },
   "devDependencies": {

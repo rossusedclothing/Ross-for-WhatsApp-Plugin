@@ -1,11 +1,11 @@
-import { initializeUI, renderSidebarContent, closeSidebar } from './ui';
+import { createApp } from 'vue';
+import App from './App.vue';
 import './content.css';
-
 console.info('contentScript is running')
 
 
 // 等待WhatsApp主界面加载完成
-function waitForWhatsAppMainPage() {
+function waitForWhatsAppMainPage(): Promise<void> {
     return new Promise<void>((resolve) => {
       // 检查是否存在WhatsApp主界面的标志性元素
       const isMainPageLoaded = () => {
@@ -20,7 +20,7 @@ function waitForWhatsAppMainPage() {
         const chatList = appElement.querySelector('[data-testid="chat-list"]');
         const navbar = appElement.querySelector('[data-testid="navbar"]');
         const mainPageElements = appElement.querySelectorAll('._aigs, ._ak_k, ._aigv'); // WhatsApp Web的一些主界面类名
-        
+        console.log("正在检查WhatsApp主界面加载完成");
         return chatList || navbar || mainPageElements.length > 0;
       };
       
@@ -42,17 +42,29 @@ function waitForWhatsAppMainPage() {
 
 
 function initialize(): void {
-        initializeUI();
-        closeSidebar();
-        renderSidebarContent('overview');
+        const containerId = 'crx-vue-root';
+        let container = document.getElementById(containerId);
+        if (!container) {
+                container = document.createElement('div');
+                container.id = containerId;
+                document.documentElement.appendChild(container);
+        }
+        if (!container.hasChildNodes()) {
+                const app = createApp(App);
+                app.mount(container);
+        }
 }
 
 function onReady(callback: () => void): void {
-	if (document.readyState === 'complete' || document.readyState === 'interactive') {
-		callback();
-		return;
-	}
-	document.addEventListener('DOMContentLoaded', callback, { once: true });
+  waitForWhatsAppMainPage().then(()=>{
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+      callback();
+      return;
+    }
+    document.addEventListener('DOMContentLoaded', callback, { once: true });
+  }).catch(()=>{
+    console.log('WhatsApp主界面加载失败');
+  })
 }
 
 onReady(initialize);
