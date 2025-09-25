@@ -1,0 +1,132 @@
+
+#crx-injected-top-tabs {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0 12px;
+	background: rgba(28, 28, 28, 0.92);
+	backdrop-filter: blur(6px);
+	color: #fff;
+	z-index: 2147483646;
+	user-select: none;
+	box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(0,0,0,0.25);
+}
+
+#crx-injected-top-tabs .crx-tab-button {
+	height: 26px;
+	padding: 0 10px;
+	border-radius: 6px;
+	border: 1px solid rgba(255,255,255,0.12);
+	background: rgba(255,255,255,0.06);
+	color: #fff;
+	font-size: 12px;
+	cursor: pointer;
+	transition: all 0.15s ease;
+}
+
+#crx-injected-top-tabs .crx-tab-button:hover {
+	background: rgba(255,255,255,0.12);
+}
+
+#crx-injected-top-tabs .crx-tab-button.active {
+	background: #00a884;
+	border-color: #00a884;
+}
+
+#crx-injected-right-sidebar {
+	position: fixed;
+	top: 40px;
+	right: 0;
+	bottom: 0;
+	width: 360px;
+	max-width: 75vw;
+	background: #111b21;
+	color: #e9edef;
+	box-shadow: 0 0 0 1px rgba(255,255,255,0.06), -12px 0 24px rgba(0,0,0,0.35);
+	transform: translateX(100%);
+	transition: transform 0.2s ease;
+	z-index: 2147483647;
+	display: flex;
+	flex-direction: column;
+}
+
+#crx-injected-right-sidebar.open {
+	transform: translateX(0%);
+}
+
+#crx-injected-right-sidebar .crx-sidebar-header {
+	height: 44px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 12px;
+	border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+#crx-injected-right-sidebar .crx-sidebar-content {
+	flex: 1;
+	overflow: auto;
+	padding: 12px;
+}
+
+#crx-injected-right-sidebar .crx-acc {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+#crx-injected-right-sidebar .crx-acc-item {
+	border: 1px solid rgba(255,255,255,0.08);
+	border-radius: 8px;
+	background: rgba(255,255,255,0.03);
+}
+
+#crx-injected-right-sidebar .crx-acc-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 12px;
+	cursor: pointer;
+}
+
+#crx-injected-right-sidebar .crx-acc-title {
+	font-size: 13px;
+	font-weight: 600;
+}
+
+#crx-injected-right-sidebar .crx-acc-toggle {
+	font-size: 12px;
+	opacity: 0.85;
+}
+
+#crx-injected-right-sidebar .crx-acc-panel {
+	padding: 10px 12px;
+	border-top: 1px solid rgba(255,255,255,0.06);
+	display: none;
+	font-size: 12px;
+	color: #c6d1d5;
+}
+
+#crx-injected-right-sidebar .crx-acc-item.open .crx-acc-panel {
+	display: block;
+}
+
+#crx-injected-right-sidebar .crx-close-btn {
+	border: none;
+	background: transparent;
+	color: #e9edef;
+	cursor: pointer;
+	font-size: 13px;
+	padding: 6px 8px;
+	border-radius: 6px;
+}
+
+#crx-injected-right-sidebar .crx-close-btn:hover {
+	background: rgba(255,255,255,0.08);
+}
+
