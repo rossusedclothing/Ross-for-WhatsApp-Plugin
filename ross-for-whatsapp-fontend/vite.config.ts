@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import manifest from './src/manifest'
 import tailwindcss from '@tailwindcss/vite'
 
-
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const production = mode === 'production'
@@ -20,9 +19,17 @@ export default defineConfig(({ mode }) => {
         },
       },
     },
-    plugins: [crx({ manifest }), vue(),tailwindcss],
+    plugins: [crx({ manifest }), vue(), tailwindcss],
     legacy: {
       skipWebSocketTokenCheck: true,
+    },
+    server: {
+      cors: {
+        origin: '*', // Allow all origins to access the resources
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+      },
     },
   }
 })

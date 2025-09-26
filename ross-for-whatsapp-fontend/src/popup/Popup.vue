@@ -17,7 +17,6 @@ onMounted(() => {
 
 watch(count, (newCount) => {
   chrome.storage.sync.set({ count: newCount })
-
   chrome.runtime.sendMessage({ type: 'COUNT', count: count.value })
 })
 </script>
