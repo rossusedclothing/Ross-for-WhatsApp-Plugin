@@ -15,14 +15,9 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="OverviewView">
 import { defineComponent } from 'vue'
 import AccordionItem from '../components/AccordionItem.vue'
-
-export default defineComponent({
-	name: 'OverviewView',
-	components: { AccordionItem },
-})
 </script>
 
 <style scoped>

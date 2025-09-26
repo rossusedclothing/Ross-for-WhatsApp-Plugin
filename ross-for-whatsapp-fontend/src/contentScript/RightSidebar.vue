@@ -13,45 +13,41 @@
   </aside>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+<script lang="ts" setup name="RightSidebar">
+import { computed, ref } from 'vue'
 import OverviewView from './views/OverviewView.vue'
 import ContactsView from './views/ContactsView.vue'
 import AutomationView from './views/AutomationView.vue'
 import SettingsView from './views/SettingsView.vue'
 
-export default defineComponent({
-  name: 'RightSidebar',
-  props: {
-    activeTab: {
-      type: String as () => 'overview' | 'contacts' | 'automation' | 'settings',
-      required: true,
-    },
-  },
-  setup(props, { expose }) {
-    const opened = ref(false)
-    function open() { opened.value = true }
-    function close() { opened.value = false }
-    expose({ open, close })
+// 定义 props
+const props = defineProps<{
+  activeTab: 'overview' | 'contacts' | 'automation' | 'settings'
+}>()
 
-    const currentView = computed(() => {
-      switch (props.activeTab) {
-        case 'overview':
-          return OverviewView
-        case 'contacts':
-          return ContactsView
-        case 'automation':
-          return AutomationView
-        case 'settings':
-          return SettingsView
-        default:
-          return OverviewView
-      }
-    })
-    return { opened, open, close, currentView }
-  },
+// 定义暴露方法
+const opened = ref(false)
+function open() { opened.value = true }
+function close() { opened.value = false }
+defineExpose({ open, close })
+
+// 根据 activeTab 计算当前组件
+const currentView = computed(() => {
+  switch (props.activeTab) {
+    case 'overview':
+      return OverviewView
+    case 'contacts':
+      return ContactsView
+    case 'automation':
+      return AutomationView
+    case 'settings':
+      return SettingsView
+    default:
+      return OverviewView
+  }
 })
 </script>
+
 
 <style scoped>
 </style>

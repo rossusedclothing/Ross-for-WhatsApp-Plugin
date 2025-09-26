@@ -5,10 +5,9 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="ContactsView">
 import { defineComponent } from 'vue'
 
-export default defineComponent({ name: 'ContactsView' })
 </script>
 
 <style scoped>

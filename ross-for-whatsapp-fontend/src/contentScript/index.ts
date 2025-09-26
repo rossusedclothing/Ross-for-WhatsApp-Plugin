@@ -26,6 +26,7 @@ function waitForWhatsAppMainPage(): Promise<void> {
       
       // 如果已经加载完成，直接resolve
       if (isMainPageLoaded()) {
+        console.log("WhatsApp主界面加载完成,加载UI");
         resolve();
         return;
       }
@@ -47,7 +48,12 @@ function initialize(): void {
         if (!container) {
                 container = document.createElement('div');
                 container.id = containerId;
-                document.documentElement.appendChild(container);
+                const appElement = document.getElementById('app');
+                if (appElement) {
+                  appElement.insertBefore(container, appElement.firstChild);
+                }else{
+                        document.documentElement.appendChild(container);
+                }
         }
         if (!container.hasChildNodes()) {
                 const app = createApp(App);

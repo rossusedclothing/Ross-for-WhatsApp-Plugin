@@ -5,10 +5,9 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name="SettingsView">
 import { defineComponent } from 'vue'
 
-export default defineComponent({ name: 'SettingsView' })
 </script>
 
 <style scoped>
